@@ -1,0 +1,29 @@
+## Hi! Nice to meet you! ;)
+We are going to work on a coding exercise together!
+The goal of today's technical excercise is to build a **Battleship** 10x10 game board.
+
+### What is Battleship?
+Battleship a strategy type guessing game for two players. It is played on ruled grids on which each player's fleet of ships (including battleships) are marked.
+The locations of the fleets are concealed from the other player.
+Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
+
+![alt text](https://i.ibb.co/p1TZKQB/exampleboard.jpg "Logo Title Text 1")
+
+### Goals by end of the exercise
+
+To simplify, you're building only a part of the game. Pretend you are player1 and you need to "play" against player2
+
+1. Build one styled 10x10 board [as nice as you want it styled!]. Build the board that you are going to use to keep track of your hits/misses against your opponent. Each position is identified by a letter and a number (e.g A6). One side are digits (1,2,3,4,5,6,7,8,9,10) and the other side are letters (A,B,C,D,E,F,G,H,I,J)
+3. Implement the "fire" function. You need to be able to tap on a cell on player2 board and you need to draw either a "hit" or a "miss" on that cell.
+
+### What is provided 
+1. players2Ships object containing all player2 ships
+
+        
+### Important notes/tips for Today 
+
+1. Use your favorite mix of html tags and css 
+2. Choose an implementation for styling
+3. Try using react Hooks
+4. Walk through your thought process out loud
+5. Ask all the questions you want
