@@ -4,14 +4,14 @@ import styled from 'styled-components';
 // import Carrier from '../../public/svg/carrier.svg';
 // import Destroyer from '../../public/svg/destroyer.svg';
 // import Submarine from '../../public/svg/submarine.svg';
+import '../../public/styles/stylesheet.css';
 
 const StyledShippingContainer = styled.div`
-  border: 1px solid black;
-  border-radius: 3px;
-  height: 150px;
-  
+  border: 3px solid #e42c2c;
+  border-radius: 3px;  
+  height: 120px;
+  background-color: #2663b1;
 `;
-  //48 73 107
 
 const StyledBattleCarrierContainer = styled.div`
     display: flex;
@@ -21,21 +21,38 @@ const StyledBattleCarrierContainer = styled.div`
 const StyledReconContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  margin-top: 12px;
 `;
 
-const StyledTest = styled.p`
-  font-family:  usnavym3d
-`
+const StyledShip = styled.div`
+> p {
+  font-family:  BattleShips1;
+  font-size: 40px;
+  line-height: 1;
+  margin: 0;
+  // color: #e42c2c;
+}`;
+
 const ShippingContainer = () => (
   <StyledShippingContainer>
     <StyledBattleCarrierContainer>
-      <StyledTest>C</StyledTest>
-      <p>Battleship</p>
+      <StyledShip>
+        <p>0</p>
+      </StyledShip>
+      <StyledShip>
+        <p>F</p>
+      </StyledShip>
     </StyledBattleCarrierContainer>
     <StyledReconContainer>
-      <p>Destroyer</p>
-      <p>Submarine</p>
-      <p>Patrol Boat</p>
+      <StyledShip>
+        <p>p</p>
+      </StyledShip>
+      <StyledShip>
+        <p>s</p>
+      </StyledShip>
+      <StyledShip>
+        <p>P</p>
+      </StyledShip>
     </StyledReconContainer>
   </StyledShippingContainer>
 );

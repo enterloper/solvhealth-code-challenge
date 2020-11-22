@@ -8,7 +8,7 @@ const StyledPlayerDetails = styled.div`
   flex-direction: column;
   width: 100%;
   &:first-of-type {
-    margin-right: 20px;
+    margin-right: 4px;
   }
 `;
 
@@ -22,12 +22,13 @@ const StyledIndicatorContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 `;
 
 const StyledIndicator = styled.div`
   display: ${({ playerTurn, playerId }) => playerTurn === playerId ? 'block' : 'none'};
-  background-color: ${({playerId}) => playerId === 1 ? 'blue' : 'red' };
+  background-color: ${({playerId}) => playerId === 1 ? '#2663b1' : '#e42c2c' };
+  border: 3px solid ${({playerId}) => playerId === 1 ? '#e42c2c' : '#2663b1' };
   height: 20px;
   width: 20px;
   border-radius: 50%;

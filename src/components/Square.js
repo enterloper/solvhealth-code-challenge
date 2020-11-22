@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const StyledSquare = styled.div`
   width: 48px;
   height: 48px;
-  border: 1px solid #4EA5D9;
+  border: 1px solid #2663b1;
 `;
 
 const Square = ({handleClick, id, status}) => {
