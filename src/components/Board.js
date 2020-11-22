@@ -8,7 +8,6 @@ const Board = ({ board, handlePlayerAttack }) => {
     border: 1px solid #000;
     height: 1000px;
     width: 1000px;
-    background-color: red;
   `;
   console.log({board});
   return (
