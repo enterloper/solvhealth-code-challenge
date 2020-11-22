@@ -1,22 +1,33 @@
 import React from 'react';
+import {array, func} from 'prop-types';
 import styled from 'styled-components';
-import BoardRow from './BoardRow';
+import BoardColumn from './BoardColumn';
 
-const Board = () => {
-  const columns = new Array(10).fill(0);
-
+const Board = ({ board, handlePlayerAttack }) => {
   const StyledBoard = styled.div`
     border: 1px solid #000;
     height: 1000px;
     width: 1000px;
     background-color: red;
   `;
-  
+  console.log({board});
   return (
     <StyledBoard>
-      {columns.map((column, index) => <BoardRow id={column+index} key={column}></BoardRow>)}
+      {board.map(column => (
+        <BoardColumn 
+            key={column.column_id}
+            id={column.column_id}
+            column={column.row}
+            handlePlayerAttack={handlePlayerAttack}
+        />
+      ))}
     </StyledBoard>
   );
 }
+
+Board.propTypes = {
+    board: array.isRequired,
+    handlePlayerAttack: func.isRequired
+};
 
 export default Board;
