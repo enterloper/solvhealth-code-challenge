@@ -21,8 +21,9 @@ const StyledPlayingField = styled.main`
 
 const StyledPlayersContainer = styled.header`
   display: flex;
-  width: 85%;
+  width: calc(100% - 40px);
   justify-content: center;
+  margin: 20px;
 `;
 
 const StyledDialogueBox = styled.div`
@@ -85,13 +86,13 @@ Patrol Boat, size 2
         <PlayerDetails 
           name="Player 1" 
           playerTurn={1}
-          shipsAvailable={player1DummyShips} 
+          ships={player1DummyShips} 
           playerId={1} 
         />
         <PlayerDetails 
           name="Player 2" 
           playerTurn={1}
-          shipsAvailable={player2DummyShips} 
+          ships={player2DummyShips} 
           playerId={2} 
         />
       </StyledPlayersContainer>

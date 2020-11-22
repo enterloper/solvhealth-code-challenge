@@ -1,11 +1,15 @@
 import React from 'react';
 import { arrayOf, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
+import ShippingContainer from './ShippingContainer';
 
 const StyledPlayerDetails = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  &:first-of-type {
+    margin-right: 20px;
+  }
 `;
 
 const StyledPlayerTitle = styled.div`
@@ -34,7 +38,7 @@ const StyledPlayerName = styled.div`
   margin: auto;
 `;
 
-const PlayerDetails = ({ name, playerId, playerTurn }) => (
+const PlayerDetails = ({ name, playerId, playerTurn, ships }) => (
   <StyledPlayerDetails>
     <StyledPlayerTitle>
       <StyledIndicatorContainer>
@@ -42,13 +46,14 @@ const PlayerDetails = ({ name, playerId, playerTurn }) => (
       </StyledIndicatorContainer>
       <StyledPlayerName>{name}</StyledPlayerName>
     </StyledPlayerTitle>
+    <ShippingContainer ships={ships} />
   </StyledPlayerDetails>
 );
 
 PlayerDetails.propTypes = {
   name: string,
   playerTurn: number,
-  shipsAvailable: shape({
+  ships: shape({
     carrier: arrayOf(string),
     battleship: arrayOf(string),
     destroyer: arrayOf(string),

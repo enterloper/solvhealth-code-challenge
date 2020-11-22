@@ -3,19 +3,21 @@ import {shape, func, number, string, arrayOf} from 'prop-types';
 import styled from 'styled-components';
 import Square from './Square';
 
+const StyledColumn = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 const BoardColumn = ({ handlePlayerAttack, column }) => {  
-  const StyledColumn = styled.div`
-    display: flex;
-    width: 100%;
-    background: blue;
-  `;
+  console.log({column})
   return (
     <StyledColumn>
-      {column.map((square, index) => (
+      {column.map(square => (
         <Square 
-            key={index}
+            key={square.square_id}
             handleClick={handlePlayerAttack}
-            id={square}
+            id={square.square_id}
+            status={square.status}
         />
       ))}
     </StyledColumn>
@@ -25,14 +27,10 @@ const BoardColumn = ({ handlePlayerAttack, column }) => {
 BoardColumn.propTypes = {
     handlePlayerAttack: func.isRequired,
     id: number,
-    column: shape({
-      column_id: string.isRequired,
-      row: arrayOf(shape({
+    column: arrayOf(shape({
         square_id: string.isRequired,
         status: string.isRequred
-      }).isRequired
-    ).isRequired
-  })
+      })).isRequired
 };
 
 export default BoardColumn;
