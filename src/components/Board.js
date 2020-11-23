@@ -1,5 +1,5 @@
 import React from 'react';
-import {array, func} from 'prop-types';
+import {array, bool, func} from 'prop-types';
 import styled from 'styled-components';
 import BoardColumn from './BoardColumn';
 
@@ -11,7 +11,7 @@ const StyledBoard = styled.div`
   background-image: url('../../public/assets/just-waves.png');
 `;
 
-const Board = ({ board, handlePlayerAttack }) => (
+const Board = ({ board, isPlayer1, handlePlayerAttack }) => (
   <StyledBoard>
     {board.map(column => (
       <BoardColumn 
@@ -19,6 +19,7 @@ const Board = ({ board, handlePlayerAttack }) => (
           id={column.column_id}
           column={column.row}
           handlePlayerAttack={handlePlayerAttack}
+          isPlayer1={isPlayer1}
       />
     ))}
   </StyledBoard>
@@ -26,7 +27,12 @@ const Board = ({ board, handlePlayerAttack }) => (
 
 Board.propTypes = {
     board: array.isRequired,
-    handlePlayerAttack: func.isRequired
+    handlePlayerAttack: func.isRequired,
+    isPlayer1: bool
+};
+
+Board.defaultProps = {
+  isPlayer1: false
 };
 
 export default Board; 

@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import 'normalize.css';
 import PlayerDetails from './PlayerDetails';
 import Board from './Board';
-import initializeBoard from '../helpers/initializeBoard';
+import buildBoard from '../helpers/buildBoard';
+import setShips from '../helpers/setShips';
 import {     
   player1Ships,
   player2Ships,
   player2Moves 
 } from '../../public/mvp_data';
+import '../../public/styles/stylesheet.css';
 
 /**
  * COLORS USED 
@@ -27,52 +29,54 @@ const StyledPlayersContainer = styled.header`
   display: flex;
   width: calc(100% - 20px);
   justify-content: center;
-  margin: 10px;
+  margin: 10px 10px;
 `;
 
 const StyledPageTitle = styled.div`
   > h1 {
     text-align: center;
-    margin: 20px auto 0;
+    margin: 40px auto 0;
+    font-family: 'Monoton', cursive;
+    font-weight: 400;
+    font-size: 50px;
+    color: #e42c2c;
   }
 `;
 
 const StyledDialogueBox = styled.div`
   width:100%;
   text-align: center;
-
+  
   > h4 {
+    height: 23px;
     margin: 24px auto;
-    font-size: 20px;
+    font-size: 24px;
     width: 85%;
   }
-`;
+  `;
 
 const StyledDivider = styled.div`
   height: 1px;
   width: 85%;
   border-bottom: 1px solid black;
+  margin-bottom: 24px;
 `;
 
+// initialize board and ship state
+const player1Terrain = buildBoard();
+const player2Terrain = buildBoard();
+
+const playerOccupation = {
+  player1: setShips(player1Terrain, player1Ships),
+  player2: setShips(player2Terrain, player2Ships)
+};
+
+const initPlayerShips = { player1Ships, player2Ships };
+
 const App = () => {
-  
-  
-  // initialize board
-  const blank = initializeBoard();
-  console.log({blank});
-
-  const [board, setBoard] = useState(blank);
-/*
-
-Carrier, size 5
-Battleship, size 4
-Destroyer, size 3
-Submarine, size 3
-Patrol Boat, size 2
-
-*/
-
-
+  const [playerShips, setShips] = useState(initPlayerShips)
+  const [playerBoard, setBoard] = useState(playerOccupation);
+  // console.log(player1Board);
   // const useEffect(() => {
   //   checkForHits()
   // }, [attacks]);
@@ -82,52 +86,47 @@ Patrol Boat, size 2
   const handlePlayerAttack = (event) => {
     console.log('target:', event.target);
     console.log(setBoard);
+    console.log(setShips)
     // setAttacks(event.target.id)
   }
 
   console.log({ player1Ships, player2Ships, player2Moves })
-  const player1DummyShips = {
-    carrier:  [ 'A9', 'B9', 'C9','D9','E9'],
-    battleship:  [ 'A3', 'A4', 'A5','A6'],
-    destroyer:  [ 'F2', 'G2', 'H2'],
-    submarine:  [ 'G1','H1','I1'],
-    patrol:  ['A10', 'B10'],
-  }
-
-  const player2DummyShips = {
-    carrier:  [ 'A10', 'B10', 'C10','D10','E10'],
-    battleship:  [ 'B3', 'B4', 'B5','B6'],
-    destroyer:  [ 'F3', 'G3', 'H3'],
-    submarine:  [ 'G1','H1','I1'],
-    patrol:  ['A9', 'B9'],
-  };  
 
   return (
     <StyledPlayingField>
       <StyledPageTitle>
-        <h1>BATTLESHIP</h1>
+        <h1>BATTLESHIP!</h1>
       </StyledPageTitle>
       <StyledPlayersContainer>
         <PlayerDetails 
           name="Player 1" 
-          playerTurn={2}
-          ships={player1DummyShips} 
+          playerTurn={1}
+          ships={playerShips.player1Ships} 
           playerId={1} 
         />
         <PlayerDetails 
           name="Player 2" 
-          playerTurn={2}
-          ships={player2DummyShips} 
+          playerTurn={1}
+          ships={playerShips.player1Ships} 
           playerId={2} 
         />
       </StyledPlayersContainer>
-      <StyledDivider />
       <StyledDialogueBox>
-          <h4>PLAYER ONE LOSES!!</h4>
-        </StyledDialogueBox>
+          <h4>RADAR OF PLAYER TWO!!</h4>
+      </StyledDialogueBox>
+        <StyledDivider />
       <Board 
         handlePlayerAttack={handlePlayerAttack} 
-        board={board}
+        board={playerBoard.player2}
+      />
+      <StyledDialogueBox>
+          <h4>YOUR RADAR!!</h4>
+      </StyledDialogueBox>
+        <StyledDivider />
+      <Board 
+        handlePlayerAttack={handlePlayerAttack} 
+        board={playerBoard.player1}
+        isPlayer1
       />
     </StyledPlayingField> 
   );

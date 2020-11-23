@@ -1,10 +1,6 @@
 import React from 'react';
 import {arrayOf, shape, string} from 'prop-types';
 import styled from 'styled-components';
-// import Carrier from '../../public/svg/carrier.svg';
-// import Destroyer from '../../public/svg/destroyer.svg';
-// import Submarine from '../../public/svg/submarine.svg';
-import '../../public/styles/stylesheet.css';
 
 const StyledShippingContainer = styled.div`
   border: 3px solid #e42c2c;

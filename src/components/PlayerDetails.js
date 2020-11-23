@@ -8,7 +8,7 @@ const StyledPlayerDetails = styled.div`
   flex-direction: column;
   width: 100%;
   &:first-of-type {
-    margin-right: 4px;
+    margin-right: 12px;
   }
 `;
 
@@ -37,6 +37,7 @@ const StyledIndicator = styled.div`
 const StyledPlayerName = styled.div`
   width: 90%;
   margin: auto;
+  font-size: 24px;
 `;
 
 const PlayerDetails = ({ name, playerId, playerTurn, ships }) => (
