@@ -1,6 +1,6 @@
 import convertToNumeric from './convertToNumeric';
 
-const setShips = (board, ships) => {
+const placeShips = (board, ships) => {
   for(let ship in ships) {
     ships[ship].forEach(shipSection => {
       const coordinates = convertToNumeric(shipSection).split('-');
@@ -11,4 +11,4 @@ const setShips = (board, ships) => {
   return board;
 };
 
-export default setShips;
+export default placeShips;

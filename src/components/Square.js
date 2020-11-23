@@ -19,17 +19,25 @@ const StyledPin = styled.div`
   background-color: ${({ status} ) => status === 'miss' ? 'white' : '#e42c2c'};
 `;
 
-const Square = ({handleClick, occupied, square_id, isPlayer1, status}) => (
-  <StyledSquare 
-    id={square_id} 
-    isPlayer1={isPlayer1}
-    occupied={occupied}
-    onClick={handleClick} 
-    status={status}
-  >
-      {status && <StyledPin status={status} />}
-  </StyledSquare>
-);
+const Square = ({handleClick, occupied, square_id, isPlayer1, status}) => {
+  const handlePlayerMove = event => { 
+    if(!isPlayer1) {
+      handleClick(event)
+    }
+  }
+
+  return (
+    <StyledSquare 
+      id={square_id} 
+      isPlayer1={isPlayer1}
+      occupied={occupied}
+      onClick={handlePlayerMove} 
+      status={status}
+    >
+        {status && <StyledPin status={status} />}
+    </StyledSquare>
+  );
+}
 
 Square.propTypes = {
     handleClick: func.isRequired,
