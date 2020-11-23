@@ -110,7 +110,6 @@ const App = () => {
   }, [playerTurn]);
 
   const handlePlayerAttack = coordinateId => {
-    console.log('blah', coordinateId);
     const otherPlayer = `player${playerTurn === 1 ? 2 : 1}`;
     const coordinates = coordinateId.split('-');
     const targetedSquare = playerOccupation[otherPlayer][coordinates[0]].row[coordinates[1]];
