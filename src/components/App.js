@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import 'normalize.css';
 import PlayerDetails from './PlayerDetails';
@@ -7,6 +7,7 @@ import Footer from './Footer';
 import buildBoard from '../helpers/buildBoard';
 import placeShips from '../helpers/placeShips';
 import convertToAlphaNumeric from '../helpers/convertToAlphaNumeric';
+import convertToNumeric from '../helpers/convertToNumeric';
 import reducePositions from '../helpers/reducePositions';
 import inflictShipDamage from '../helpers/inflictShipDamage';
 import {     
@@ -17,7 +18,7 @@ import {
 import '../../public/styles/stylesheet.css';
 
 /**
- * COLORS USED 
+ * TODO: make constants file & Proptypes file
  * CRIMSON #e42c2c;
  * STEELBLUE #2663b1
  */
@@ -78,7 +79,7 @@ const playerOccupation = {
   player2: placeShips(player2Terrain, initialPlayer2Ships)
 };
 
-const initReducedPlayerPositions = {
+const reducedPlayerPositions = {
   player1: reducePositions(initialPlayer1Ships),
   player2: reducePositions(initialPlayer2Ships),
 };
@@ -94,35 +95,31 @@ const initPlayerAttacks = {
 };
 
 const App = () => {
+  // const [playerBoard, setBoard] = useState(playerOccupation); TODO: Reset Board for new games
   const [playerShips, setPlayerShips] = useState(initPlayerShips)
-  const [playerBoard, setBoard] = useState(playerOccupation);
   const [playerTurn, setPlayerTurn] = useState(1);
   const [player2Moves, setPlayer2Moves] = useState(initialPlayer2Moves);
-  const [reducedPlayerPositions, setReducedPlayerPositions] = useState(initReducedPlayerPositions)
   const [playerAttacks, setPlayerAttacks] = useState(initPlayerAttacks);
-  // console.log(player1Board);
-
   
-  // const [attacks, setAttacks] = useState([]);
-  if (playerTurn === 3) {
-    console.log(setBoard);
-    console.log(setPlayerShips)
-    console.log(setPlayerTurn)
-    console.log(setPlayer2Moves, player2Moves) // player 2 moves invoked by player 2 turn and attacks changed
-    console.log(setReducedPlayerPositions);
-    console.log({ initialPlayer1Ships, initialPlayer2Ships, initialPlayer2Moves })
-  }
-  const handlePlayerAttack = ({target}) => {
-    console.log('target:', target.id);
+  useEffect(() => {
+    if (playerTurn === 2) {
+      let playerTwoAttack = player2Moves.pop();
+      handlePlayerAttack(convertToNumeric(playerTwoAttack));
+      setPlayer2Moves([...player2Moves]);
+    }
+  }, [playerTurn]);
+
+  const handlePlayerAttack = coordinateId => {
+    console.log('blah', coordinateId);
     const otherPlayer = `player${playerTurn === 1 ? 2 : 1}`;
-    const coordinates = target.id.split('-');
-    const targetedSquare = playerBoard[otherPlayer][coordinates[0]].row[coordinates[1]];
+    const coordinates = coordinateId.split('-');
+    const targetedSquare = playerOccupation[otherPlayer][coordinates[0]].row[coordinates[1]];
     
     if (targetedSquare.status) {
       return;
     }
     // check if hit
-    const alphaValue = convertToAlphaNumeric(target.id);
+    const alphaValue = convertToAlphaNumeric(coordinateId);
     const confirmHit = reducedPlayerPositions[otherPlayer].includes(alphaValue);
 
     const currentPlayer = `player${playerTurn}`;
@@ -134,21 +131,17 @@ const App = () => {
       setPlayerShips({
         [otherPlayer]: inflictShipDamage(otherPlayerShips, alphaValue),
         [currentPlayer]: playerShips[currentPlayer]
-      });
-      // remove from player ships array
-      // if ships array is empty change icon to red
-      // place red dot on map
-      
+      });     
     } else {
       targetedSquare.status = 'miss'
-      // place white dot on map
     }
-    playerAttacks[`player${playerTurn}`]  = [...playerAttacks[`player${playerTurn}`], alphaValue];
     
-    setPlayerAttacks(playerAttacks)
+    setPlayerAttacks({
+      [currentPlayer]: [...playerAttacks[currentPlayer], alphaValue],
+      [otherPlayer]: [...playerAttacks[otherPlayer]]
+    })
     setPlayerTurn(playerTurn === 1 ? 2 : 1);
   }
-
 
   return (
     <StyledPlayingField>
@@ -175,7 +168,8 @@ const App = () => {
         <StyledDivider />
       <Board 
         handlePlayerAttack={handlePlayerAttack} 
-        board={playerBoard.player2}
+        board={playerOccupation.player2}
+        playerTurn={playerTurn}
       />
       <StyledDialogueBox>
           <h4>YOUR RADAR!!</h4>
@@ -183,8 +177,9 @@ const App = () => {
         <StyledDivider />
       <Board 
         handlePlayerAttack={handlePlayerAttack} 
-        board={playerBoard.player1}
+        board={playerOccupation.player1}
         isPlayer1
+        playerTurn={playerTurn}
       />
       <StyledDivider />
       <Footer />

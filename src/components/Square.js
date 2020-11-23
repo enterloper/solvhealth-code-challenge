@@ -1,5 +1,5 @@
 import React from 'react';
-import {bool, func, string} from 'prop-types';
+import {bool, func, number, string} from 'prop-types';
 import styled from 'styled-components';
 
 const StyledSquare = styled.div`
@@ -19,10 +19,11 @@ const StyledPin = styled.div`
   background-color: ${({ status} ) => status === 'miss' ? 'white' : '#e42c2c'};
 `;
 
-const Square = ({handleClick, occupied, square_id, isPlayer1, status}) => {
-  const handlePlayerMove = event => { 
-    if (!isPlayer1) {
-      handleClick(event)
+const Square = ({handleClick, occupied, square_id, isPlayer1, playerTurn, status}) => {
+  const handlePlayerMove = ({ target }) => { 
+    const { id } = target;
+    if (!isPlayer1 && playerTurn === 1) {
+      handleClick(id)
     }
   }
 
@@ -44,6 +45,7 @@ Square.propTypes = {
     square_id: string.isRequired,
     isPlayer1: bool,
     occupied: bool.isRequired,
+    playerTurn: number.isRequired,
     status: string
 };
 

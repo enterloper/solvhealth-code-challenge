@@ -29,32 +29,30 @@ const StyledShip = styled.div`
   color: ${({ship}) => ship.length ? 'black' : '#e42c2c'};
 }`;
 
-const ShippingContainer = ({ ships }) => {
-  console.log({ships})
-  return (
-    <StyledShippingContainer>
-      <StyledBattleCarrierContainer>
-        <StyledShip ship={ships.carrier}>
-          <p>0</p>
-        </StyledShip>
-        <StyledShip ship={ships.battleship}>
-          <p>F</p>
-        </StyledShip>
-      </StyledBattleCarrierContainer>
-      <StyledReconContainer>
-        <StyledShip ship={ships.destroyer}>
-          <p>p</p>
-        </StyledShip>
-        <StyledShip ship={ships.submarine}>
-          <p>s</p>
-        </StyledShip>
-        <StyledShip ship={ships.patrol}>
-          <p>P</p>
-        </StyledShip>
-      </StyledReconContainer>
-    </StyledShippingContainer>
-  );
-}
+const ShippingContainer = ({ ships }) => (
+  <StyledShippingContainer>
+    <StyledBattleCarrierContainer>
+      <StyledShip ship={ships.carrier}>
+        <p>0</p>
+      </StyledShip>
+      <StyledShip ship={ships.battleship}>
+        <p>F</p>
+      </StyledShip>
+    </StyledBattleCarrierContainer>
+    <StyledReconContainer>
+      <StyledShip ship={ships.destroyer}>
+        <p>p</p>
+      </StyledShip>
+      <StyledShip ship={ships.submarine}>
+        <p>s</p>
+      </StyledShip>
+      <StyledShip ship={ships.patrol}>
+        <p>P</p>
+      </StyledShip>
+    </StyledReconContainer>
+  </StyledShippingContainer>
+);
+
 ShippingContainer.propTypes = {
   ships: shape({
     carrier: arrayOf(string),

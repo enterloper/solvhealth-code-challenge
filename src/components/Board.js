@@ -1,5 +1,5 @@
 import React from 'react';
-import {array, bool, func} from 'prop-types';
+import {array, bool, func, number} from 'prop-types';
 import styled from 'styled-components';
 import BoardColumn from './BoardColumn';
 
@@ -47,7 +47,7 @@ const buildXAxis = () => {
   return xAxis;
 }
 
-const Board = ({ board, isPlayer1, handlePlayerAttack }) => {
+const Board = ({ board, isPlayer1, handlePlayerAttack, playerTurn }) => {
   const alphas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   return (
     <StyledBoard>
@@ -66,6 +66,7 @@ const Board = ({ board, isPlayer1, handlePlayerAttack }) => {
                 column={column.row}
                 handlePlayerAttack={handlePlayerAttack}
                 isPlayer1={isPlayer1}
+                playerTurn={playerTurn}
             />
           ))}
         </div>
@@ -77,7 +78,8 @@ const Board = ({ board, isPlayer1, handlePlayerAttack }) => {
 Board.propTypes = {
     board: array.isRequired,
     handlePlayerAttack: func.isRequired,
-    isPlayer1: bool
+    isPlayer1: bool,
+    playerTurn: number
 };
 
 Board.defaultProps = {
