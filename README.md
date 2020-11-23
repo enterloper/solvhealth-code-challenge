@@ -1,13 +1,11 @@
-https://gist.github.com/dbraga/8209ae72ac74a330fe0c9e7a94a5ca7e
+# HEB Coding Challenge
 
-/*
+The following was a coding challenge I was tasked with for a software developer position at Solv. 
 
-Carrier, size 5
-Battleship, size 4
-Destroyer, size 3
-Submarine, size 3
-Patrol Boat, size 2
+> To run in your local dev environment, [Node.js](https://nodejs.org/en/download/) will need to be installed. Once Node is installed follow the following commands:
+>   1. In your terminal, run `npm install` to install all dependencies.
+>   2. To start a development environment, run `npm start` and navigate to `localhost:8080` in any browser.
 
-*/
+The task was to develop a version of the classic game BATTLESHIP!
 
-Your opponent records the miss by placing. When all of the squares that one your ships occupies have been hit, the ship will be sunk. You should announce "hit and sunk". In the physical game, a red peg is placed on the top edge of the vertical board to indicate a sunk ship.
+![SOLV CODE CHALLENGE PREVIEW](./public/assets/solv_preview.png)

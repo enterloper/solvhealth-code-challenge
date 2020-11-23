@@ -66,7 +66,7 @@ const StyledDivider = styled.div`
   border-bottom: 1px solid black;
   margin-bottom: 24px;
   &:last-of-type {
-    margin-top: 240px;
+    margin-top: 100px;
   }
 `;
 
