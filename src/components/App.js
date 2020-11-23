@@ -6,6 +6,7 @@ import Board from './Board';
 import Footer from './Footer';
 import buildBoard from '../helpers/buildBoard';
 import placeShips from '../helpers/placeShips';
+import convertToAlphaNumeric from '../helpers/convertToAlphaNumeric'
 import {     
   initialPlayer1Ships,
   initialPlayer2Ships,
@@ -96,6 +97,7 @@ const App = () => {
     console.log(setPlayer2Moves, player2Moves)
     console.log('target:', event.target.id);
     // setAttacks(event.target.id)
+    console.log('modded value:', convertToAlphaNumeric(event.target.id))
     setPlayerTurn(playerTurn === 1 ? 2 : 1);
   }
 

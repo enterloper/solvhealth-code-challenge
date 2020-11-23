@@ -31,6 +31,8 @@ const LegendSquare = styled.div`
   width: 48px;
   height: 48px;
   border: 1px solid #2663b1;
+  font-size: 32px;
+  
 `;
 
 const buildYAxis = array => (

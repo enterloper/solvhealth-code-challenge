@@ -1,7 +1,8 @@
 function convertToAlphaNumeric (string) {
     const stringArray = string.split('-');
-    stringArray[0] = String.fromCharCode(parseInt(stringArray[0]) + 64);
+    stringArray[0] = String.fromCharCode(parseInt(stringArray[0]) + 65);
+    stringArray[1]++;
     return stringArray.join('-');
 }
 
-module.exports = convertToAlphaNumeric;
+export default convertToAlphaNumeric;
