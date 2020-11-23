@@ -21,7 +21,7 @@ const StyledPin = styled.div`
 
 const Square = ({handleClick, occupied, square_id, isPlayer1, status}) => {
   const handlePlayerMove = event => { 
-    if(!isPlayer1) {
+    if (!isPlayer1) {
       handleClick(event)
     }
   }
@@ -34,7 +34,7 @@ const Square = ({handleClick, occupied, square_id, isPlayer1, status}) => {
       onClick={handlePlayerMove} 
       status={status}
     >
-        {status && <StyledPin status={status} />}
+        {status && <StyledPin status={status} id={square_id} />}
     </StyledSquare>
   );
 }
