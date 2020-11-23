@@ -1,4 +1,4 @@
-# HEB Coding Challenge
+# Solv Coding Challenge
 
 The following was a coding challenge I was tasked with for a software developer position at Solv. 
 
